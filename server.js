@@ -1,14 +1,27 @@
-var express = require('express');
-var app = express();
+// Reference: https://medium.com/@maison.moa/setting-up-an-express-backend-server-for-create-react-app-bc7620b20a61
 
-var port = process.env.PORT || 5000;
+const express = require('express');
+const path = require('path');
+const app = express();
+const port = process.env.PORT || 5000;
 
-app.use(express.static(__dirname));
+// app.use(express.static(path.join(__dirname, 'client/build')));
+console.log('PUBLIC_URL is: ', process.env.PUBLIC_URL);
 
-app.get("/", function (req, res) {
-  res.render("index");
-})
+if(process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, 'client/build')));  
+}
+else { // TT: not sure if this is needed.
+  app.use(express.static(path.join(__dirname, 'client/public')));  
+}
 
-app.listen(port, function () {
-  console.log("app running");
-})
+// console.log that your server is up and running
+app.listen(port, () => console.log(`Listening on port ${port}`));
+
+// create a GET route
+app.get('/express_backend', (req, res) => {
+  console.log('server app.get called');
+  res.send({ "express": "Hello from Express!" });
+});
+
+
