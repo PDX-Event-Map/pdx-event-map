@@ -13,7 +13,8 @@ export class MapContainer extends Component {
     this.state = {
       showingInfoWindow: false,
       activeMarker: {},
-      selectedPlace: {}
+      selectedPlace: {},
+      locations: props.locations,
     };
   }
   onMarkerClick(props, marker, e) {
@@ -31,7 +32,7 @@ export class MapContainer extends Component {
     // const google = this.props.google;
 
     return (
-      <div
+       <div
         style={{
           position: "relative",
           height: "calc(100vh - 190px)"
@@ -43,6 +44,12 @@ export class MapContainer extends Component {
             lat: 45.509871,
             lng:  -122.680712
           }}>
+          {this.state.locations.map((item, i) => <Marker 
+            name={item.title}
+            title={item.title}
+            position={{lat: item.location.lat, lng: item.location.lng}} 
+            onClick={this.onMarkerClick}
+            />) }
           {/* <Marker
             onClick={this.onMarkerClick}
             // icon={{ // custom icon here!
@@ -65,6 +72,7 @@ export class MapContainer extends Component {
     );
   }
 }
+
 export default GoogleApiWrapper({
   apiKey: mapKey,
   v: "3.30"
