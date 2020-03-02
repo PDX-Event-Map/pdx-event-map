@@ -7,13 +7,16 @@
   flex-direction: row;
 }
 .box {
-  margin: 10px;
+  margin: 5px;
 }
 .left {
   text-align: left;
 }
 .main {
   width: 100%;
+}
+#debug-div {
+  font-size: 10px;
 }
 /* .App-logo {
   height: 40vmin;
