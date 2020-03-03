@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import MapContainer from './Map.js';
 import { Menu } from './Menu.js';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
